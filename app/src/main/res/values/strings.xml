@@ -1,0 +1,5 @@
+<resources>
+    <string name="SmartHome_intro">Bienvenido a SmartHome</string>
+    <string name="Tv_intro">Este es su televisor $name </string>
+
+</resources>

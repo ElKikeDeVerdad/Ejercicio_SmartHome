@@ -1,0 +1,191 @@
+🧠 Ejercicio práctico: Sistema de dispositivos inteligentes
+🎯 Objetivo
+Construir paso a paso un sistema de clases que simula dispositivos inteligentes del hogar, aplicando los fundamentos de la programación orientada a objetos en Kotlin.
+
+✅ Paso 1: Clase base SmartDevice
+🎓 Conceptos:
+
+Clases
+
+Constructores
+
+Encapsulamiento con modificadores de visibilidad (private, public)
+
+Enumeraciones (enum class)
+
+🤔 Preguntas para pensar antes de codificar:
+
+¿Qué propiedades básicas debería tener cualquier dispositivo inteligente?
+
+¿Cómo definirías su estado actual (por ejemplo, encendido o apagado)? ¿Podría representarse mejor con un enum?
+
+¿Cómo protegerías el estado interno del dispositivo para que solo pueda modificarse desde dentro de la clase?
+
+¿Qué diferencia hay entre turnOn() y isOn()?
+
+💡 Sugerencias:
+
+Crea una clase SmartDevice con propiedades: name, category, y deviceStatus.
+
+Usa un enum class DeviceStatus { ON, OFF, ONLINE, OFFLINE, UNKNOWN }.
+
+Haz deviceStatus privado.
+
+Agrega métodos turnOn(), turnOff() y isOn(): Boolean.
+
+🛠️ En Android Studio, crea un archivo llamado SmartDevice.kt en la carpeta model.
+
+✅ Paso 2: Subclase SmartTvDevice
+🎓 Conceptos:
+
+Herencia (: SmartDevice)
+
+Overriding
+
+Validaciones en setters
+
+Uso de super
+
+🤔 Preguntas para pensar:
+
+¿Qué propiedades únicas tiene un televisor que no tienen otros dispositivos?
+
+¿Qué métodos podrías sobreescribir de SmartDevice para adaptarlos?
+
+¿Cómo limitarías que el volumen esté entre 0 y 100? ¿Y los canales?
+
+💡 Sugerencias:
+
+Crea una clase SmartTvDevice que herede de SmartDevice.
+
+Agrega propiedades como volume y channel con validación en el set.
+
+Sobrescribe turnOn() y turnOff() para imprimir mensajes específicos.
+
+Usa super.turnOn() para conservar la lógica original.
+
+🛠️ Crea SmartTvDevice.kt en la misma carpeta.
+
+✅ Paso 3: Subclase SmartLightDevice
+🎓 Conceptos:
+
+Herencia
+
+Propiedades específicas
+
+Overriding
+
+🤔 Preguntas:
+
+¿Qué diferencia tiene una luz inteligente respecto a una TV?
+
+¿Qué propiedad específica tendría?
+
+¿Debería comportarse igual al encender/apagar?
+
+💡 Sugerencias:
+
+Crea SmartLightDevice heredando de SmartDevice.
+
+Agrega propiedad brightness con validación de 0 a 100.
+
+Sobrescribe turnOn() para subir el brillo inicial a 2.
+
+✅ Paso 4: Interfaz ControllableDevice
+🎓 Conceptos:
+
+Interfaces
+
+Polimorfismo
+
+🤔 Preguntas:
+
+¿Qué métodos deberían implementar todos los dispositivos controlables?
+
+¿Qué ventaja hay al usar una interfaz en vez de una clase base?
+
+💡 Sugerencias:
+
+Crea una interface ControllableDevice con turnOn() y turnOff().
+
+Haz que tanto SmartTvDevice como SmartLightDevice implementen esta interfaz.
+
+Observa cómo el polimorfismo te permite tratarlos a ambos por igual.
+
+✅ Paso 5: Delegado de propiedad
+🎓 Conceptos:
+
+Delegación de propiedades
+
+Reutilización de lógica repetida (Delegates.observable)
+
+🤔 Preguntas:
+
+¿Qué propiedad se repite entre dispositivos que podrías observar?
+
+¿Cómo podrías usar un delegado para imprimir cada vez que se cambia volume, channel o brightness?
+
+💡 Sugerencias:
+
+Usa Delegates.observable para imprimir mensajes cuando cambie el volumen, brillo o canal.
+
+Esto mejora la trazabilidad sin meter println() en todos los set.
+
+✅ Paso 6: Composición con clase SmartHome
+🎓 Conceptos:
+
+Composición
+
+Relación HAS-A
+
+🤔 Preguntas:
+
+¿Cómo podrías reunir todos tus dispositivos en un solo objeto?
+
+¿Qué ventajas tiene controlar los dispositivos desde una clase contenedora?
+
+💡 Sugerencias:
+
+Crea clase SmartHome que tenga una TV y una luz.
+
+Agrega funciones como turnOnAllDevices(), increaseTvVolume(), etc.
+
+Mantén una propiedad devicesTurnedOn como contador.
+
+✅ Paso 7: Código principal (main)
+🎓 Conceptos:
+
+Instanciación de objetos
+
+Uso del polimorfismo
+
+💡 Sugerencias:
+
+Crea un main.kt.
+
+Instancia SmartTvDevice, SmartLightDevice, y SmartHome.
+
+Prueba sus métodos y verifica sus estados.
+
+📚 Conclusión (al estilo del Codelab)
+🔁 Lo que aplicaste
+Encapsulamiento: Ocultaste el estado interno de los dispositivos usando private.
+
+Abstracción: Usaste interfaces para definir contratos de comportamiento.
+
+Herencia: Aprovechaste código reutilizable en subclases.
+
+Polimorfismo: Llamaste a los métodos turnOn() y turnOff() sin preocuparte del tipo específico.
+
+Delegados de propiedad: Observaste cambios en propiedades como volumen o brillo.
+
+Modificadores de visibilidad: Controlaste el acceso a métodos y propiedades.
+
+📦 ¿Dónde poner cada archivo? (Android Studio)
+Archivo	Carpeta sugerida
+SmartDevice.kt	app/src/main/java/.../model/
+SmartTvDevice.kt	app/src/main/java/.../model/
+SmartLightDevice.kt	app/src/main/java/.../model/
+ControllableDevice.kt	app/src/main/java/.../interfaces/
+SmartHome.kt	app/src/main/java/.../model/
+Main.kt	app/src/main/java/.../ (o donde esté el main de tu app Compose si es app real)

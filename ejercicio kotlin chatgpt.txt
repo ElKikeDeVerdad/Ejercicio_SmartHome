@@ -1,0 +1,92 @@
+Dispositivos: televisor, lampara, telefono
+-Deben tener nombre (nombre)
+-Pueden ser moviles o fijos(movilidad)
+-Pueden ser telefonos, televisores, tabletas(categoria)
+
+Funciones que todos tienen en comun:
+Estado actual:{
+-Encendido
+-Apagado }
+
+Encender (turnOn)
+Apagar (turnOfr)
+
+
+Funciones que algunos tienen:
+-Volumen (AltavozVolumen)
+-Cambio de canal (numeroCanal)
+-Brillo (nivelBrillo)
+
+
+
+SmartTvDevice
+name: samsung TV
+mobility: fijo
+category: TV
+
+Override turnOn "Su $category $mobility $name esta $statusDevice"
+turnOff "Su &category $mobility $name esta $statusDevice"
+
+altavozVolumen = 0..100
+numeroCanal = 0..900
+
+cambiarVolumen
+subirVolumen
+bajarVolumen
+
+cambiarCanal
+siguienteCanal
+anteriorCanal
+
+SmartphoneDevice
+name: Redmi
+mobility: portatil
+category: Celular
+
+override turnOn
+override turnOff
+override conectadoInternet
+override desconectadoInternet
+altavozVolumen
+nivelBrillo
+
+SmartLightDevice
+override turnOn
+override turnOff
+nivelBrillo
+subirBrillo
+bajarBrillo
+
+ ---------------	PINTAR	-----------------------------------
+
+Quiero hacer una SmartHomeApp donde tenga: (en un futuro, hacer que cada app tenga su propia ventana, con un
+boton que te mande a ella, y que muestre todo lo que salga en donde: en vez de que sea
+todo en la misma pantalla
+-SmartTvDeviceApp
+-SmartphoneDeviceApp
+-SmartLightDeviceApp
+
+en donde:
+SmartTvDeviceApp:
+-Tenga una imagen de la TV (fun Imagen, tiene que tener 5 imagenes incluyendo la panatalla apagada o encendida)
+-Visualizar su estado, canal y sonido actual (puede que sea un boton para verlo o que lo muestre de base siempre)
+-Boton para cambiar el estado(Que cuando el estado cambie de on a off, que cambie la pantalla de encendido a apagado)
+-Boton para cambiar el canal(aumentar, retroceder). (cuando cambie el canal, que ponga una imagen distinta (5 imagenes para 5 canales) y que imprima el mensaje (Canal X)
+-boton para cambiar el sonido(subir, bajar) (A mayores(aun no se hacer) que salga una imagen de poca duracion de un simbolo + o - cuando se le de click al boton y que salga el pantalla el sonido luego
+de subirlo o bajarlo)
+
+
+SmartphoneDevice:
+-Tenga una imagen del telefono
+-Visualizar el estado (dos imagenes que muestren si esta encedido o apagado)
+-boton para mostrar el brillo actual
+-boton para cambiar el brillo(subir, bajar, 3 imagenes, uno sin brillo, uno con brillo, uno con mucho brillo)
+-boton para cambiar el sonido(subir, bajar) (A mayores(aun no se hacer) que salga una imagen de poca duracion de un simbolo + o - cuando se le de click al boton y que salga el pantalla el sonido luego
+de subirlo o bajarlo)
+
+SmartLightDeviceApp:
+-Tenga una imagen de la lampara
+-Visualizar el estado y brillo( imagen que muestre encendido, apagado y 2 imagenes que muestren brillo medio o alto)
+-boton para cambiar estado (encender, apagar)
+-boton para cambiar brillo (subir, bajar)
+
