@@ -1,5 +1,14 @@
 <resources>
     <string name="SmartHome_intro">Bienvenido a SmartHome</string>
+    <string name="Tv_Seccion">Bienvenido a la Seccion de smartTV</string>
     <string name="Tv_intro">Este es su televisor $name </string>
+    <string name="Encender">Encender</string>
+    <string name="Apagar">Apagar</string>
+    <string name="Conectar">Conectar</string>
+    <string name="Desconectar">Desconectar</string>
+    <string name="aumentarVolumen">Subir Volumen</string>
+    <string name="disminuirVolumen">Bajar Volumen</string>
+    <string name="aumentarCanal">Siguiente Canal</string>
+    <string name="disminuirCanal">Anterior Canal</string>
 
 </resources>

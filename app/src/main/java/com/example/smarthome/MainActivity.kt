@@ -5,21 +5,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.smarthome.model.SmartLightDevice
 import com.example.smarthome.model.SmartTvDevice
 import com.example.smarthome.model.SmartphoneDevice
@@ -33,30 +32,29 @@ class MainActivit : ComponentActivity() {
         setContent {
             SmartHomeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SmartHomeTheme {
                         SmartHomeApp(
                             modifier = Modifier
-                            .padding(innerPadding))
-                    } }
-
+                                .padding(innerPadding)
+                        )
                 }
 
+            }
 
 
         }
     }
+}
 @Composable
 fun SmartHomeApp(modifier: Modifier = Modifier
     .fillMaxSize()){
     Text(stringResource(R.string.SmartHome_intro))
-    SmartHomeApp(modifier = Modifier)
-    SmartTvDeviceApp(modifier =  Modifier)
+    SmartTvDeviceApp()
     SmartphoneDeviceApp()
     SmartLightDeviceApp()
 
     }
 
-}
+
 @Composable
 fun BackgroundImage(){
     //Image(
@@ -73,31 +71,64 @@ fun SmartTvDeviceApp(modifier: Modifier = Modifier
 
     val televisorSamsung = SmartTvDevice("SamsungSmartTV", "Televisor", "Fijo", "Apagado")
 
-    //var estarEncendido by remember { mutableStateOf(false)}
 
     Column(modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+        horizontalAlignment = Alignment.CenterHorizontally,
 
-        televisorSamsung.turnOn()
+    ) { Text(stringResource(R.string.Tv_Seccion))
 
-        Text("Bienvenido a la sección de SmartTv")
-        //Estado del dispositivo:
-
-    Text("${televisorSamsung.obtenerEstado()}")
-
+        Image(
+        painter = painterResource(R.drawable.televisor_samsung_apagado_ps),
+            contentDescription = "Apagado"
+        )
 
 
+        Row(modifier = modifier) {
+            //Estado del dispositivo:
+            Text(televisorSamsung.obtenerEstado())
+            //Canal Actual
+            Text(televisorSamsung.obtenerNumeroCanal())
+            //Volumen Actual
+            Text(televisorSamsung.obtenerTvVolumen())
+        }
+
+        Row( modifier = modifier) {
+            //Row para cambiar estado
+            Row {
+                Button(onClick = {/*TODO*/}) {
+                Text(stringResource(R.string.Encender))
+
+                Button(onClick = {/*TODO*/}) {
+                    Text(stringResource(R.string.Apagar))}
+
+                    //Row para cambiar canal
+                    Row {
+                        Button(onClick = {/*TODO*/}) {
+                            Text(stringResource(R.string.aumentarCanal)) }
+
+                        Button(onClick = {/*TODO*/}) {
+                            Text(stringResource(R.string.disminuirCanal)) }
+
+                    }
+                    //Row para cambiar Volumen
+
+                    Row {
+                        Button(onClick = {/*TODO*/}) {
+                            Text(stringResource(R.string.aumentarVolumen)) }
+
+                        Button(onClick = {/*TODO*/}) {
+                            Text(stringResource(R.string.disminuirVolumen))
+                }
+                }
+            }
+        }
 
 
+       // var estarEncendido by remember { mutableStateOf(false)}
+
+        }
 
 
-
-
-   //Image(
-        //painter = painterResource(),
-   //     contentDescription = "Apagado"
-   // )
     }
 
 }
@@ -106,7 +137,6 @@ fun SmartTvDeviceApp(modifier: Modifier = Modifier
 fun SmartphoneDeviceApp(modifier: Modifier = Modifier
     .fillMaxWidth()
     .fillMaxHeight(0.3f)){
-
 
     }
 
@@ -117,6 +147,9 @@ fun SmartLightDeviceApp(){}
 
 @Preview(showBackground = true)
 @Composable
-fun SmartHomeApp(){
-    SmartTvDeviceApp()
+fun SmartHomeAppPreview(){
+    SmartHomeTheme {
+        SmartHomeApp()
+    }
+
 }

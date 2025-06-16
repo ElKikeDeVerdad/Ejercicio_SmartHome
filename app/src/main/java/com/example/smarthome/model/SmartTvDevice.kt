@@ -3,6 +3,17 @@ package com.example.smarthome.model
 class SmartTvDevice (name: String, category: String, mobility: String, deviceStatus: String) :
     SmartDevice (name, category, mobility,) {
 
+    private var numeroCanal: Int = 3
+        set(value) {
+            if (value in 1..5) {
+                field = value
+            } else {
+                println(" El canal $value no es válido, debe estar entre 0 y 200.")
+            }
+        }
+
+    private var altavozTvVolumen by VolumeDelegate()
+
     override fun turnOn() {
         super.turnOn()
         println("Su $category $mobility $name esta $deviceStatus")
@@ -13,10 +24,8 @@ class SmartTvDevice (name: String, category: String, mobility: String, deviceSta
         println("Su $category $mobility $name esta $deviceStatus")
     }
 
-    private var altavozTvVolumen by VolumeDelegate()
-    fun obtenerTvVolumen(): Int = altavozTvVolumen
 
-
+    fun obtenerTvVolumen(): String = "Volumen: $altavozTvVolumen"
 
     fun subirVolumen() {
         if (altavozTvVolumen < 100) {
@@ -36,16 +45,7 @@ class SmartTvDevice (name: String, category: String, mobility: String, deviceSta
         }
     }
 
-
-    private var numeroCanal: Int = 3
-        set(value) {
-            if (value in 1..5) {
-                field = value
-            } else {
-                println(" El canal $value no es válido, debe estar entre 0 y 200.")
-            }
-        }
-    fun obtenerNumeroCanal(): Int = numeroCanal
+    fun obtenerNumeroCanal(): String = "Canal actual: $numeroCanal"
 
     fun siguienteCanal() {
         numeroCanal++

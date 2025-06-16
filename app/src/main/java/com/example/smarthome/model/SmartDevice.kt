@@ -47,7 +47,7 @@ open class SmartDevice(val name: String, val category: String, val mobility: Str
     }
 
     //Esto es para poder imprimir el estado del dispositivo ya que deviceStatus es privado
-    fun obtenerEstado(): String {
+    open fun obtenerEstado(): String {
         return when (deviceStatus) {
             DeviceStatus.ENCENDIDO -> "El dispositivo esta: ENCENDIDO"
             DeviceStatus.APAGADO -> "El dispositivo esta: APAGADO"
